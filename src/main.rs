@@ -1,13 +1,20 @@
 use chrono::{Utc, Datelike};
 use indicatif::{ProgressBar, ProgressStyle};
+use structopt::StructOpt;
 
 const AVG_LIFE: i32 = 72;
 
+#[derive(StructOpt)]
+struct Cli{
+    year_of_birth: i32
+}
+
 fn main() {
+    let args = Cli::from_args();
     println!("Life Progress");
     let bar = ProgressBar::new(AVG_LIFE as u64);
     bar.set_style(ProgressStyle::default_bar().template("{bar:40.cyan/blue} {percent}%"));
-    bar.inc(age(1997) as u64);
+    bar.inc(age(args.year_of_birth) as u64);
     println!();
 }
 
