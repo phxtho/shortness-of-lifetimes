@@ -1,12 +1,13 @@
 use chrono::{Utc, Datelike};
-use indicatif::ProgressBar;
+use indicatif::{ProgressBar, ProgressStyle};
 
 const AVG_LIFE: i32 = 72;
 
 fn main() {
     println!("Life Progress");
     let bar = ProgressBar::new(AVG_LIFE as u64);
-    bar.inc(age(1970) as u64);
+    bar.set_style(ProgressStyle::default_bar().template("{bar:40.cyan/blue} {percent}%"));
+    bar.inc(age(1997) as u64);
     println!();
 }
 
